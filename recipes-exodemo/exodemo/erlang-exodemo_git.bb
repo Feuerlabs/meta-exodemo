@@ -31,7 +31,7 @@ PR = "r0"
 
 # The URI to fetch the application source code from.
 # Replace this with an URI that refers to the applicaiton source code.
-SRC_URI = "git://github.com/Feuerlabs/exoapp.git;protocol=git;protocol=ssh;user=git"
+SRC_URI = "git://github.com/Feuerlabs/exodemo.git;protocol=git;protocol=ssh;user=git"
 
 # The sub directory under the build directory to check out the source code into.
 S = "${WORKDIR}/git"
@@ -40,8 +40,8 @@ S = "${WORKDIR}/git"
 inherit tetrapak
 
 # Add an erlang package through the TPLINO Yocto tools.
-# Replace "exoapp" with the  name chosen for the application.
+# Replace "exodemo" with the  name chosen for the application.
 python () {
-    erlang_def_package("exoapp", "exoapp-*", "ebin priv", "src include README", d)
+    erlang_def_package("exodemo", "exodemo-*", "ebin priv", "src include README", d)
 }
 

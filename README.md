@@ -4,6 +4,15 @@
 This repository contains the Yocto recipes to build a custom
 application running on top of the Exosense Device software stack.
 
+Please note that the demo application source code is checked out from
+
+    git@github.com:Feuerlabs/exodemo.git
+
+by the recipe found under `recpies-exodemo/exodemo/erlang-exodemo_git.bb`
+
+
+# Further reading
+
 Please see:
 
 	git@github.com:Feuerlabs/meta-exosense.git
