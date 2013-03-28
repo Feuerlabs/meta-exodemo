@@ -1,7 +1,7 @@
 # Exosense Device Template Application Build
 **(C) 2013 Feuerlabs, Inc - Magnus Feuer**
 
-This repository contains the Yocto recipes to build a custom
+This repository contains the Yocto recipes to build the demo
 application running on top of the Exosense Device software stack.
 
 Please note that the demo application source code is checked out from
