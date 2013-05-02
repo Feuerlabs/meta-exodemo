@@ -1,0 +1,63 @@
+#!/bin/sh -e
+### BEGIN INIT INFO
+# Provides:          exodemo
+# Required-Start:
+# Required-Stop:
+# Default-Start:     1 2 3 4 5
+# Default-Stop:
+# Short-Description: Think demo start / stop.
+### END INIT INFO
+
+ROOT=/home/exosense
+ERL_APP=exodemo
+
+case "$1" in
+  start)
+	export KVDB_BACKENDS=ets
+
+
+	# Start PPP if setup.
+	if [ -f /etc/ppp/ppp-start ]
+	then
+   	    # Override stupid yocto overwrite that I am too lazy to fix.
+	    echo '* * tmobile' > /etc/ppp/pap-secrets
+	    sh /etc/ppp/ppp-start
+	fi
+
+	# Set the CAN bus speed and bring up the interface
+#	/bin/ip link set can0 up type can bitrate 500000
+#	/sbin/ifconfig can0 up
+
+	if [ ! -d $ROOT ]
+	then
+	    mkdir -p $ROOT
+	fi
+	cd $ROOT
+
+        #
+        # Compile config file into binary format
+        #
+	if [ ! -f $ROOT/setup/start.boot ]
+	then
+	    /usr/bin/escript /usr/lib/erlang/lib/setup-*/ebin/setup_gen.beam $ERL_APP /usr/lib/erlang/lib/${ERL_APP}-*/priv/setup.config $ROOT/setup
+	fi
+	# Launch it!
+	if [ -f /etc/ppp/ppp-start ]
+	then
+	    nohup sh -c "(sleep 15; /usr/bin/erl -noshell -boot $ROOT/setup/start -config $ROOT/setup/sys > /tmp/exodev.log 2>&1)" &
+	else
+	    nohup /usr/bin/erl -noshell -boot $ROOT/setup/start -config $ROOT/setup/sys > /tmp/exodev.log 2>&1 &
+	fi
+	echo $! > /tmp/${ERL_APP}.pid
+	;;
+
+  stop)
+	kill $(cat /tmp/${ERL_APP}.pid)
+	exit 0
+	;;
+
+  *)
+	echo "Usage: $0 {start|stop}" >&2
+	exit 1
+	;;
+esac

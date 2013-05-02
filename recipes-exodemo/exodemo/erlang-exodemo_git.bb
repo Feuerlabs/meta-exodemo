@@ -23,6 +23,11 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=815ca599c9df247a0c7f619bab123dad"
 # through this dependency.
 DEPENDS += " exosense"
 
+# If you are to use CAN bus, you need iproute2 to set the CAN bus speed.
+# See https://github.com/Feuerlabs/can and its README.md file for details.
+#
+# RDEPENDS += " iproute2"
+
 # Source revision to fetch from the SRC_URI
 SRCREV="AUTOINC"
 
@@ -44,3 +49,4 @@ inherit tetrapak
 python () {
     erlang_def_package("exodemo", "exodemo-*", "ebin priv", "src include README", d)
 }
+

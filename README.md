@@ -1,23 +1,16 @@
-# Exosense Device Template Application Build
-**(C) 2013 Feuerlabs, Inc - Magnus Feuer**
+# Exosense Device Template - Yocto Recipe
+**(C) 2013 Feuerlabs, Inc - All rights reserved**
 
-This repository contains the Yocto recipes to build the demo
-application running on top of the Exosense Device software stack.
+This repository contains the Yocto build layer for the Exosense demo application found at `https://github.com/Feuerlabs/exodemo.git`.
 
-Please note that the demo application source code is checked out from
-
-    git@github.com:Feuerlabs/exodemo.git
-
-by the recipe found under `recpies-exodemo/exodemo/erlang-exodemo_git.bb`
-
-
-# Further reading
+It contains recipes (under `recipes-exodemo/exodemo`) to build the
+demo application, boot scripts for the application, and PPP
+communication setup scripts.
 
 Please see:
 
-	git@github.com:Feuerlabs/meta-exosense.git
-	
-for detailed instructions on how to build a firmware with Linux,
-Exosense, and an custom application that can be flashed to target
-hardware.
+    https://github.com/Feuerlabs/exosense_specs.git
 
+and its `doc/exosense_demo_tutorial.pdf` file for detailed
+instructions on how to build and flash an image with the demo
+application on target hardware.

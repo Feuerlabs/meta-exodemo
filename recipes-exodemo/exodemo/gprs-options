@@ -1,0 +1,20 @@
+/dev/ttyUSB0
+115200
+connect "/usr/sbin/chat -v -f /etc/ppp/gprs-connect"
+disconnect "/usr/sbin/chat -v -f /etc/ppp/gprs-disconnect"
+debug
+noauth
+persist
+maxfail 0
+name "ck3"
+novj
+nodeflate
+noccp
+nobsdcomp
+noaccomp
+nopcomp
+noipdefault
+usepeerdns
+defaultroute
+local
+kdebug 7
